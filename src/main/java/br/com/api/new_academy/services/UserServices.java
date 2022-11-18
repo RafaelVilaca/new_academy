@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import br.com.api.new_academy.entities.Login;
 import br.com.api.new_academy.entities.User;
 import br.com.api.new_academy.models.ResponseModel;
 import br.com.api.new_academy.repositories.UserRepository;
@@ -53,12 +54,19 @@ public class UserServices {
         }
     }
 
-    // Método para remover usuário
-    public ResponseEntity<ResponseModel> remover(long codigo) {
-        ur.deleteById(codigo);
+    // Método para desativar/Ativar usuário
+    public ResponseEntity<User> desativarAtivar(long codigo) {
+        User oldUser = ur.findById(codigo).orElse(new User());
+        oldUser.setAtivo(!oldUser.getAtivo());
+        return new ResponseEntity<User>(ur.save(oldUser), HttpStatus.OK);
+    }
 
-        rm.setMessage("O usuário foi removido com sucesso!");
-        return new ResponseEntity<ResponseModel>(rm, HttpStatus.OK);
+    public ResponseEntity<User> canLogin(Login l) {
+        User user = ur.findByLogin(l.login).orElse(new User());
+        if (!user.getSenha().equals(l.senha)) {
+            user = new User();
+        }
+        return new ResponseEntity<User>(user, HttpStatus.OK);
     }
 
 }
