@@ -1,5 +1,10 @@
 package br.com.api.new_academy.entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 public class ExerciseTraining {
     private Long codigo;
     private String equipamento;
@@ -8,7 +13,8 @@ public class ExerciseTraining {
     private Long treinoCodigo;
     private Training treino;
 
-    public ExerciseTraining(Long codigo, String equipamento, Long numeroAparelho, Boolean ativo, Long treinoCodigo, Training treino) {
+    public ExerciseTraining(Long codigo, String equipamento, Long numeroAparelho, Boolean ativo, Long treinoCodigo,
+            Training treino) {
         this.codigo = codigo;
         this.equipamento = equipamento;
         this.numeroAparelho = numeroAparelho;
