@@ -1,5 +1,7 @@
 package br.com.api.new_academy.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -50,5 +52,10 @@ public class TrainingController {
     @PutMapping("/desativarAtivar/{codigo}")
     public ResponseEntity<Training> desativarAtivar(@PathVariable long codigo) {
         return ts.desativarAtivar(codigo);
+    }
+
+    @GetMapping("/trainingActives")
+    public List<Training> trainingActives() {
+        return ts.trainingActives();
     }
 }

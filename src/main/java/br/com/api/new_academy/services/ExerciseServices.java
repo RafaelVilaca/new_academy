@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.api.new_academy.entities.Exercise;
 import br.com.api.new_academy.entities.ExerciseTraining;
+import br.com.api.new_academy.entities.Training;
 import br.com.api.new_academy.models.ResponseModel;
 import br.com.api.new_academy.repositories.ExerciseRepository;
 import br.com.api.new_academy.repositories.TrainingRepository;
@@ -35,7 +36,7 @@ public class ExerciseServices {
                     ex.numeroAparelho,
                     ex.ativo,
                     ex.treinoCodigo,
-                    tr.findById(ex.treinoCodigo).orElse(null)));
+                    tr.findById(ex.treinoCodigo).orElse(new Training())));
         });
         return tExercise;
     }

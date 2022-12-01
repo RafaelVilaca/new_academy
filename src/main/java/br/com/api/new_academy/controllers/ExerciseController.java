@@ -54,9 +54,4 @@ public class ExerciseController {
     public ResponseEntity<Exercise> desativarAtivar(@PathVariable long codigo) {
         return es.desativarAtivar(codigo);
     }
-
-    // @GetMapping("/see-all-exercises-of-training/{codigo}")
-    // public List<Exercise> seeAllExercisesOfTraining(@PathVariable long codigo) {
-    // return es.seeAllExercisesOfTraining(codigo);
-    // }
 }

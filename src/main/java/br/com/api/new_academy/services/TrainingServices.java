@@ -1,5 +1,8 @@
 package br.com.api.new_academy.services;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,5 +48,16 @@ public class TrainingServices {
         Training oldTraining = tr.findById(codigo).orElse(new Training());
         oldTraining.setAtivo(!oldTraining.getAtivo());
         return new ResponseEntity<Training>(tr.save(oldTraining), HttpStatus.OK);
+    }
+
+    public List<Training> trainingActives() {
+        Iterable<Training> trainings = tr.findAll();
+        List<Training> trainingActives = new ArrayList<Training>();
+        trainings.forEach(ex -> {
+            if (ex.getAtivo()) {
+                trainingActives.add(ex);
+            }
+        });
+        return trainingActives;
     }
 }
