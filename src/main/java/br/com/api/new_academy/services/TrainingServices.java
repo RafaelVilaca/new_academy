@@ -63,7 +63,8 @@ public class TrainingServices {
     }
 
     public List<Exercise> seeAllExercisesOfTraining(Long codigo) {
-        List<Exercise> exercises = er.findByTreinoCodigo(codigo);
-        return exercises;
+        // List<Exercise> exercises = er.findByTreinoCodigo(codigo);
+        // return exercises;
+        return new ArrayList<>();
     }
 }

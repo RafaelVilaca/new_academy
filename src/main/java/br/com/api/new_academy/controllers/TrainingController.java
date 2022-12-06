@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.api.new_academy.entities.Training;
-import br.com.api.new_academy.entities.TrainingExercises;
 import br.com.api.new_academy.services.TrainingServices;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -60,8 +59,9 @@ public class TrainingController {
         return ts.trainingActives();
     }
 
-    @GetMapping("/see-all-exercises-of-training/{codigo}")
-    public TrainingExercises seeAllExercisesOfTraining(@PathVariable long codigo) {
-        return ts.seeAllExercisesOfTraining(codigo);
-    }
+    // @GetMapping("/see-all-exercises-of-training/{codigo}")
+    // public TrainingExercises seeAllExercisesOfTraining(@PathVariable long codigo)
+    // {
+    // return ts.seeAllExercisesOfTraining(codigo);
+    // }
 }
