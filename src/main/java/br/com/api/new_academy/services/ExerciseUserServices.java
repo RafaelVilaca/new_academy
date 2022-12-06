@@ -5,31 +5,31 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import br.com.api.new_academy.entities.Exercise_User;
+import br.com.api.new_academy.entities.ExerciseUser;
 import br.com.api.new_academy.models.ResponseModel;
-import br.com.api.new_academy.repositories.Exercise_UserRepository;
+import br.com.api.new_academy.repositories.ExerciseUserRepository;
 
 @Service
-public class Exercise_UserServices {
+public class ExerciseUserServices {
 
     @Autowired
-    private Exercise_UserRepository eur;
+    private ExerciseUserRepository eur;
 
     @Autowired
     private ResponseModel rm;
 
     // Método para listar os usuários existentes
-    public Iterable<Exercise_User> listar() {
+    public Iterable<ExerciseUser> listar() {
         return eur.findAll();
     }
 
     // Método para listar os usuários existentes
-    public Exercise_User buscar(long codigo) {
-        return eur.findById(codigo).orElse(new Exercise_User());
+    public ExerciseUser buscar(long codigo) {
+        return eur.findById(codigo).orElse(new ExerciseUser());
     }
 
     // Método para cadastrar ou alterar produtos
-    public ResponseEntity<?> cadastrarAlterar(Exercise_User t, String acao) {
+    public ResponseEntity<?> cadastrarAlterar(ExerciseUser t, String acao) {
         if (t.getRepeticoes().equals("")) {
             rm.setMessage("O Número de Repetições é obrigatório!");
             return new ResponseEntity<ResponseModel>(rm, HttpStatus.BAD_REQUEST);
@@ -39,9 +39,9 @@ public class Exercise_UserServices {
             return new ResponseEntity<ResponseModel>(rm, HttpStatus.BAD_REQUEST);
         }
         if (acao == "cadastrar") {
-            return new ResponseEntity<Exercise_User>(eur.save(t), HttpStatus.CREATED);
+            return new ResponseEntity<ExerciseUser>(eur.save(t), HttpStatus.CREATED);
         } else {
-            return new ResponseEntity<Exercise_User>(eur.save(t), HttpStatus.OK);
+            return new ResponseEntity<ExerciseUser>(eur.save(t), HttpStatus.OK);
         }
     }
 

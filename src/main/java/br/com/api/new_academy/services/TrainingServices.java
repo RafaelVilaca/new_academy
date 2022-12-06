@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import br.com.api.new_academy.entities.Exercise;
 import br.com.api.new_academy.entities.Training;
 import br.com.api.new_academy.models.ResponseModel;
 import br.com.api.new_academy.repositories.TrainingRepository;
@@ -59,5 +60,10 @@ public class TrainingServices {
             }
         });
         return trainingActives;
+    }
+
+    public List<Exercise> seeAllExercisesOfTraining(Long codigo) {
+        List<Exercise> exercises = er.findByTreinoCodigo(codigo);
+        return exercises;
     }
 }

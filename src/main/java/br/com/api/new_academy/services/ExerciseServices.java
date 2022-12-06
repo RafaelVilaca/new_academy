@@ -20,6 +20,8 @@ public class ExerciseServices {
 
     @Autowired
     private ExerciseRepository er;
+
+    @Autowired
     private TrainingRepository tr;
 
     @Autowired
@@ -28,6 +30,7 @@ public class ExerciseServices {
     // Método para listar os usuários existentes
     public List<ExerciseTraining> listar() {
         Iterable<Exercise> exercises = er.findAll();
+        List<Training> traines = (List<Training>) tr.findAll();
         List<ExerciseTraining> tExercise = new ArrayList<ExerciseTraining>();
         exercises.forEach(ex -> {
             tExercise.add(new ExerciseTraining(
@@ -36,7 +39,9 @@ public class ExerciseServices {
                     ex.numeroAparelho,
                     ex.ativo,
                     ex.treinoCodigo,
-                    tr.findById(ex.treinoCodigo).orElse(new Training())));
+                    traines.stream()
+                            .filter(x -> x.getCodigo().equals(ex.getTreinoCodigo()))
+                            .findFirst()));
         });
         return tExercise;
     }
@@ -68,10 +73,5 @@ public class ExerciseServices {
         Exercise oldExercise = er.findById(codigo).orElse(new Exercise());
         oldExercise.setAtivo(!oldExercise.getAtivo());
         return new ResponseEntity<Exercise>(er.save(oldExercise), HttpStatus.OK);
-    }
-
-    public List<Exercise> seeAllExercisesOfTraining(Long codigo) {
-        List<Exercise> exercises = er.findByTreinoCodigo(codigo);
-        return exercises;
     }
 }

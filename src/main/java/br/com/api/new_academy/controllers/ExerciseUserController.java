@@ -12,17 +12,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.api.new_academy.entities.Exercise_User;
+import br.com.api.new_academy.entities.ExerciseUser;
 import br.com.api.new_academy.models.ResponseModel;
-import br.com.api.new_academy.services.Exercise_UserServices;
+import br.com.api.new_academy.services.ExerciseUserServices;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api/exercise_user")
-public class Exercise_UserController {
+public class ExerciseUserController {
 
     @Autowired
-    private Exercise_UserServices eus;
+    private ExerciseUserServices eus;
 
     @GetMapping("/")
     public String rota() {
@@ -30,22 +30,22 @@ public class Exercise_UserController {
     }
 
     @GetMapping("/listar")
-    public Iterable<Exercise_User> listar() {
+    public Iterable<ExerciseUser> listar() {
         return eus.listar();
     }
 
     @GetMapping("/buscar/{codigo}")
-    public Exercise_User buscar(@PathVariable long codigo) {
+    public ExerciseUser buscar(@PathVariable long codigo) {
         return eus.buscar(codigo);
     }
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<?> cadastrar(@RequestBody Exercise_User u) {
+    public ResponseEntity<?> cadastrar(@RequestBody ExerciseUser u) {
         return eus.cadastrarAlterar(u, "cadastrar");
     }
 
     @PutMapping("/alterar")
-    public ResponseEntity<?> alterar(@RequestBody Exercise_User u) {
+    public ResponseEntity<?> alterar(@RequestBody ExerciseUser u) {
         return eus.cadastrarAlterar(u, "alterar");
     }
 

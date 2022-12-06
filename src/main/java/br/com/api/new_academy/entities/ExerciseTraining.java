@@ -1,5 +1,7 @@
 package br.com.api.new_academy.entities;
 
+import java.util.Optional;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,15 +13,15 @@ public class ExerciseTraining {
     private Long numeroAparelho;
     private Boolean ativo;
     private Long treinoCodigo;
-    private Training treino;
+    private Optional<Training> treino;
 
     public ExerciseTraining(Long codigo, String equipamento, Long numeroAparelho, Boolean ativo, Long treinoCodigo,
-            Training treino) {
+            Optional<Training> optional) {
         this.codigo = codigo;
         this.equipamento = equipamento;
         this.numeroAparelho = numeroAparelho;
         this.ativo = ativo;
         this.treinoCodigo = treinoCodigo;
-        this.treino = treino;
+        this.treino = optional;
     }
 }
